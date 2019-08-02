@@ -10,12 +10,12 @@ def get_count(cursor, sqlquery):
         return row[0]
 
 
-def make_counts(cursor, type, stage):
+def make_counts(cursor, dbname, type, stage):
     counts = []
     
-    if stage:
+    if stage == 'true':
         stagingtable = '_stage'
-    else:
+    elif stage == 'false':
         stagingtable = ''
 
     if type == 'well':
@@ -46,7 +46,7 @@ def make_counts(cursor, type, stage):
 
     table_str = table.get_string()
 
-    with open(f"counts_{type}{stagingtable}.txt", "w+") as f:
+    with open(f"counts_{dbname}_{type}{stagingtable}.txt", "w+") as f:
         f.write(table_str)
 
     counts.append({'type': 'Well', 'location': 'Canada', 'count': count_total})
@@ -57,6 +57,6 @@ def make_counts(cursor, type, stage):
     counts.append({'type': 'Well', 'location': 'SK', 'count': count_sk})
     counts.append({'type': 'Well', 'location': 'YT', 'count': count_yt})
 
-    with open(f"counts_{type}{stagingtable}.json", "w+") as j:
+    with open(f"counts_{dbname}_{type}{stagingtable}.json", "w+") as j:
         j.write(json.dumps(counts))
 
