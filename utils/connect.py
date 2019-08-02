@@ -27,13 +27,12 @@ db_strings = {
 
 
 def by_database_string(database_string):
-    print(db_strings[database_string]['dbtype'])
     if db_strings[database_string]['dbtype'] == 'sqlserver':
         import pyodbc
         conn = pyodbc.connect('Driver={SQL Server};'
                               'Server=%s;'
                               'Database=%s;'
-                              'uid=%s'
+                              'uid=%s;'
                               'pwd=%s;' % (db_strings[database_string]['server'],
                                            db_strings[database_string]['database'], db_strings[database_string]['uid'],
                                            db_strings[database_string]['pwd']))
