@@ -25,7 +25,7 @@ def test_db_getcounts(database_connection, dbname, type, stage):
 @pytest.mark.parametrize("column_name", [
     "wellid", "uwi", "origsourceid", "type", "status", "sour", "name", "licensee", "operator", "spuddate", "licdate",
     "haccuracy", "dls_address", "nts_address", "provstate", "sourceid", "lastmodified", "modifiedby", "remarks",
-    "geom", "countymd", "gid", "surface_loc", "field", "deltaflag",
+    "geom", "countymd", "gid", "surface_loc", "field", "deltaflag", "gojo"
 ])
 def test_db_well_column_exist(database_connection, dbname, type, stage, column_name):
     tablenm, columnnm = utils.sql_helper.column_exists(database_connection, dbname, type, stage, column_name)
