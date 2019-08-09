@@ -22,11 +22,9 @@ def column_exists(cursor, dbname, type, stage, column):
 
     cursor.execute(column_exist_sql)
 
-    if cursor.rowcount == 1:
-        row = cursor.fetchone()
-        table_name, column_name = row[0], row[1]
-        return table_name, column_name
-
+    row = cursor.fetchone()
+    table_name, column_name = row[0], row[1]
+    return table_name, column_name
 
 
 def uniqueness(cursor, dbname, type, stage, column):

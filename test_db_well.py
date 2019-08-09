@@ -33,6 +33,10 @@ def test_db_well_column_exist(database_connection, dbname, type, stage, column_n
     assert tablenm == f"{type}_can{utils.sql_helper.get_stagestr(stage)}" and columnnm == column_name
 
 
+def test_sys_well_index_exist():
+    pass
+
+
 def test_db_unique_id(database_connection, dbname, type, stage):
     id = f"{type}id"
     assert utils.sql_helper.uniqueness(database_connection, dbname, type, stage, id)
