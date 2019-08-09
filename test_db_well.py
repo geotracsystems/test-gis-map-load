@@ -62,7 +62,7 @@ def test_db_noblank(database_connection, dbname, type, stage, column_name):
     ("sour", "''"),
     ("field", "''"),
     ("haccuracy", 1),
-    ("deltaflag", "'I'")
+    # ("deltaflag", "'I'")
 ])
 def test_db_well_always_value(database_connection, dbname, type, stage, column_name, value):
     assert utils.sql_helper.always_value(database_connection, dbname, type, stage, column_name, value)
