@@ -29,9 +29,8 @@ def column_exists(cursor, dbname, type, stage, column):
 
 def uniqueness(cursor, dbname, type, stage, column):
     uniqueness_sql  = f"SELECT (COUNT({column}) - COUNT(DISTINCT({column}))) from {type}_can{get_stagestr(stage)}"
-    cursor.execute(uniqueness_sql)
-    row = cursor.fetchone()
-    if row[0] == 0:
+    unique_count = get_count(cursor, uniqueness_sql)
+    if unique_count == 0:
         return True
     else:
         return False
@@ -39,9 +38,8 @@ def uniqueness(cursor, dbname, type, stage, column):
 
 def no_nulls(cursor, dbname, type, stage, column):
     no_nulls_sql = f"SELECT COUNT({column}) from {type}_can{get_stagestr(stage)} WHERE {column} IS NULL"
-    cursor.execute(no_nulls_sql)
-    row = cursor.fetchone()
-    if row[0] == 0:
+    no_nulls_count = get_count(cursor, no_nulls_sql)
+    if no_nulls_count == 0:
         return True
     else:
         return False
@@ -49,11 +47,30 @@ def no_nulls(cursor, dbname, type, stage, column):
 
 def no_blanks(cursor, dbname, type, stage, column):
     no_blanks_sql = f"SELECT COUNT({column}) from {type}_can{get_stagestr(stage)} WHERE {column} = ''"
-    cursor.execute(no_blanks_sql)
-    row = cursor.fetchone()
-    if row[0] == 0:
+    count_blank = get_count(cursor, no_blanks_sql)
+    if count_blank == 0:
         return True
     else:
         return False
 
 
+def always_value(cursor, dbname, type, stage, column, value):
+    always_value_sql = f"SELECT COUNT({column}) from {type}_can{get_stagestr(stage)} WHERE {column} != {value}"
+    count_value = get_count(cursor, always_value_sql)
+    if count_value == 0:
+        return True
+    else:
+        return False
+
+
+def uwi_exits_ab_sk(cursor, dbname, type, stage):
+    uwi_sql = f"SELECT COUNT(*) FROM {type}_can{get_stagestr(stage)} WHERE provstate in ('AB', 'SK') and uwi = ''"
+    count_blank_uwi = get_count(cursor, uwi_sql)
+    if count_blank_uwi == 0:
+        return True
+    else:
+        return False
+
+
+def dls_nts_validator(cursor, dbname, type, stage):
+    pass

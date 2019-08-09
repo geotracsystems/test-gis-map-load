@@ -37,19 +37,41 @@ def test_sys_well_index_exist():
     pass
 
 
-def test_db_unique_id(database_connection, dbname, type, stage):
-    id = f"{type}id"
-    assert utils.sql_helper.uniqueness(database_connection, dbname, type, stage, id)
+@pytest.mark.parametrize("column_name", [
+    "wellid", "uwi", "origsourceid", "gid"
+])
+def test_db_well_nonull(database_connection, dbname, type, stage, column_name):
+    assert utils.sql_helper.no_nulls(database_connection, dbname, type, stage, column_name)
 
 
-def test_db_nonull_id(database_connection, dbname, type, stage):
-    id = f"{type}id"
-    assert utils.sql_helper.no_nulls(database_connection, dbname, type, stage, id)
+@pytest.mark.parametrize("column_name", [
+    "wellid", "gid"
+])
+def test_db_well_unique(database_connection, dbname, type, stage, column_name):
+    assert utils.sql_helper.uniqueness(database_connection, dbname, type, stage, column_name)
 
 
-def test_db_nonull_origsourceid(database_connection, dbname, type, stage):
-    assert utils.sql_helper.no_nulls(database_connection, dbname, type, stage, 'origsourceid')
+@pytest.mark.parametrize("column_name", [
+    "origsourceid",
+])
+def test_db_noblank(database_connection, dbname, type, stage, column_name):
+    assert utils.sql_helper.no_blanks(database_connection, dbname, type, stage, column_name)
 
 
-def test_db_noblank_origsourceid(database_connection, dbname, type, stage):
-    assert utils.sql_helper.no_blanks(database_connection, dbname, type, stage, 'origsourceid')
+@pytest.mark.parametrize("column_name, value", [
+    ("sour", "''"),
+    ("field", "''"),
+    ("haccuracy", 1),
+    ("deltaflag", "'I'")
+])
+def test_db_well_always_value(database_connection, dbname, type, stage, column_name, value):
+    assert utils.sql_helper.always_value(database_connection, dbname, type, stage, column_name, value)
+
+
+def test_db_uwi_exits_ab_sk(database_connection, dbname, type, stage):
+    assert utils.sql_helper.uwi_exits_ab_sk(database_connection, dbname, type, stage)
+
+
+def test_db_validate_dls_nts(database_connection, dbname, type, stage):
+    # assert utils.sql_helper.dls_nts_validator(database_connection, dbname, type, stage)
+    pass

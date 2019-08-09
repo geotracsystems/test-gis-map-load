@@ -1,32 +1,3 @@
-def all_unique(list):
-    if len(list) == len(set(list)):
-        return True
-    else:
-        return False
-
-
-def isall_notnull(list):
-    null = 0
-    for item in list:
-        if item == '':
-            null = null + 1
-    if null == 0:
-        return True
-    else:
-        return False
-
-
-def isall_null(list):
-    notnull = 0
-    for item in list:
-        if item != '':
-            notnull = notnull + 1
-    if notnull == 0:
-        return True
-    else:
-        return False
-
-
 def isvalid_date(datestr):
     invalid_flag = 0
     if len(datestr) == 0:
@@ -66,6 +37,3 @@ def isvalid_datelist(list):
         return True
     else:
         return False
-
-# def isvalid_geo():
-    #
