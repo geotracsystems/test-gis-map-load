@@ -74,3 +74,12 @@ def uwi_exits_ab_sk(cursor, dbname, type, stage):
 
 def dls_nts_validator(cursor, dbname, type, stage):
     pass
+
+
+def valid_data(cursor, dbname, type, stage, column, values):
+    values_in_sql = f"SELECT COUNT(*) from {type}_can{get_stagestr(stage)} WHERE {column} NOT IN {values}"
+    count_values_in = get_count(cursor, values_in_sql)
+    if count_values_in == 0:
+        return True
+    else:
+        return False

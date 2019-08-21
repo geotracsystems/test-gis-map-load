@@ -38,7 +38,7 @@ def test_sys_well_index_exist():
 
 
 @pytest.mark.parametrize("column_name", [
-    "wellid", "uwi", "origsourceid", "gid"
+    "wellid", "uwi", "origsourceid", "gid", "sourceid", "lastmodified", "modifiedby",
 ])
 def test_db_well_nonull(database_connection, dbname, type, stage, column_name):
     assert utils.sql_helper.no_nulls(database_connection, dbname, type, stage, column_name)
@@ -52,7 +52,7 @@ def test_db_well_unique(database_connection, dbname, type, stage, column_name):
 
 
 @pytest.mark.parametrize("column_name", [
-    "origsourceid",
+    "origsourceid", "modifiedby",
 ])
 def test_db_noblank(database_connection, dbname, type, stage, column_name):
     assert utils.sql_helper.no_blanks(database_connection, dbname, type, stage, column_name)
@@ -62,7 +62,6 @@ def test_db_noblank(database_connection, dbname, type, stage, column_name):
     ("sour", "''"),
     ("field", "''"),
     ("haccuracy", 1),
-    # ("deltaflag", "'I'")
 ])
 def test_db_well_always_value(database_connection, dbname, type, stage, column_name, value):
     assert utils.sql_helper.always_value(database_connection, dbname, type, stage, column_name, value)
@@ -70,6 +69,15 @@ def test_db_well_always_value(database_connection, dbname, type, stage, column_n
 
 def test_db_uwi_exits_ab_sk(database_connection, dbname, type, stage):
     assert utils.sql_helper.uwi_exits_ab_sk(database_connection, dbname, type, stage)
+
+
+@pytest.mark.parametrize("column_name, values", [
+    ("provstate", "('AB', 'BC', 'MB', 'SK', 'YT')"),
+    ("type", "(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 98, 99)"),
+    ("status", "(1, 2, 3, 4, 5, 98, 99)"),
+])
+def test_db_well_values_in(database_connection, dbname, type, stage, column_name, values):
+    assert utils.sql_helper.valid_data(database_connection, dbname, type, stage, column_name, values)
 
 
 def test_db_validate_dls_nts(database_connection, dbname, type, stage):

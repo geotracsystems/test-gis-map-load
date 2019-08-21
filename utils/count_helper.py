@@ -1,6 +1,7 @@
 import json
 import utils.connect
 from utils.sql_helper import get_stagestr
+from utils.chat_helper import chat_helper
 from prettytable import PrettyTable
 
 
@@ -36,6 +37,8 @@ def make_counts(cursor, dbname, type, stage):
     print(table)
 
     table_str = table.get_string()
+    # chat_helper(f"Counts in {dbname} > {type}_can{get_stagestr(stage)}")
+    # chat_helper(table_str)
 
     with open(f"counts_{dbname}_{table_name}.txt", "w+") as f:
         f.write(table_str)
