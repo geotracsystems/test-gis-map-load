@@ -1,4 +1,4 @@
-import requests
+# import requests
 import json
 
 # Channel webhook definitions
@@ -26,5 +26,5 @@ def chat_helper(text):
     payload_slack["text"] = text
     payload_googlechat["text"] = text
 
-    requests.post(slack_webhook, json.dumps(payload_slack))
-    requests.post(gchat_webhook, json.dumps(payload_googlechat))
+    # requests.post(slack_webhook, json.dumps(payload_slack))
+    # requests.post(gchat_webhook, json.dumps(payload_googlechat))
