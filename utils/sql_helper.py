@@ -19,12 +19,32 @@ def column_exists(cursor, dbname, type, stage, column):
         f"table_name = '{type}_can{get_stagestr(stage)}' AND  "
         f"column_name = '{column}'"
     )
-
     cursor.execute(column_exist_sql)
 
     row = cursor.fetchone()
     table_name, column_name = row[0], row[1]
     return table_name, column_name
+
+
+def column_count(cursor, dbname, type, stage):
+    column_count_sql = (
+        f"SELECT COUNT(column_name) FROM information_schema.columns WHERE "
+        f"table_name = '{type}_can{get_stagestr(stage)}'"
+    )
+
+    return get_count(cursor, column_count_sql)
+
+
+def index_exists(cursor, dbname, type, stage, index):
+    index_exist_sql = (
+        f"SELECT name from sys.indexes where "
+        f"object_id = OBJECT_ID('dbo.{type}_can{get_stagestr(stage)}')"
+        f"AND name = '{index}'"
+    )
+    cursor.execute(index_exist_sql)
+    row = cursor.fetchone()
+    index_name = row[0]
+    return index_name
 
 
 def uniqueness(cursor, dbname, type, stage, column):

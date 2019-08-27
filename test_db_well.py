@@ -33,8 +33,34 @@ def test_db_well_column_exist(database_connection, dbname, type, stage, column_n
     assert tablenm == f"{type}_can{utils.sql_helper.get_stagestr(stage)}" and columnnm == column_name
 
 
-def test_sys_well_index_exist():
-    pass
+def test_sys_well_column_count(database_connection, dbname, type, stage):
+    column_count = utils.sql_helper.column_count(database_connection, dbname, type, stage)
+    if dbname == 'warehouse':
+        assert column_count == 27
+    else:
+        assert column_count == 25
+
+
+@pytest.mark.testindexes
+@pytest.mark.parametrize("index_name", [
+    "well_can_gid_pk",
+    "well_can_code_idx",
+    "well_can_countymd_idx",
+    "well_can_dls_address_idx",
+    "well_can_licensee_idx",
+    "well_can_name_idx",
+    "well_can_nts_address_idx",
+    "well_can_operator_idx",
+    "well_can_provstate_idx",
+    "well_can_status_idx",
+    "well_can_surface_loc_idx",
+    "well_can_type_idx",
+    "well_can_wellid_idx",
+    "well_can_sidx",
+])
+def test_sys_well_index_exist(database_connection, dbname, type, stage, index_name):
+    indexnm = utils.sql_helper.index_exists(database_connection, dbname, type, stage, index_name)
+    assert index_name == indexnm
 
 
 @pytest.mark.parametrize("column_name", [
