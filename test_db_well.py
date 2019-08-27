@@ -43,7 +43,7 @@ def test_sys_well_column_count(database_connection, dbname, type, stage):
 
 @pytest.mark.testindexes
 @pytest.mark.parametrize("index_name", [
-    "well_can_gid_pk",
+    # "well_can_gid_pk",
     "well_can_code_idx",
     "well_can_countymd_idx",
     "well_can_dls_address_idx",
