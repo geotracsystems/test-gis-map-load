@@ -11,8 +11,9 @@
   DTS:LocaleID="4105"
   DTS:ObjectName="well_can_loads"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{18FEAFAB-EBDF-44FD-8D5C-D2AF534A4FE1}">
+  DTS:ProtectionLevel="0"
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{7DCDABD5-DD78-4FBD-91C0-E136C2C73687}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,8 +27,7 @@
           DTS:ConnectionString="Data Source=192.168.46.35;User ID=sa;Initial Catalog=GISData;Provider=SQLNCLI11.1;Auto Translate=False;">
           <DTS:Password
             DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZn+jZs5QkmXqnof5wSSCQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABhmU2W4p+UiIRUcAzq5EbNAAAAAASAAACgAAAAEAAAADmVwFQVul5906XLWq5MuWsgAAAARGBWztAhJNfSKbHavuc4ty/wbEA4OnIHA1DDUhj19v4UAAAAsRI3zP4P+3XSOJ52/bKd0T69/g4</DTS:Password>
+            Sensitive="1"></DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -41,8 +41,7 @@
           DTS:ConnectionString="Data Source=192.168.60.75;User ID=gis;Initial Catalog=GISData;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
           <DTS:Password
             DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZn+jZs5QkmXqnof5wSSCQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADmLlopJhriLppnle0CESobAAAAAASAAACgAAAAEAAAABlaSdCrrlhb5PSVLwFN2F4YAAAAZypPKJazfHQr/Xne5YcyzW6fYUgEXQt3FAAAADvbq6gM8G8Sq7ckkT2I+HeG7ztd</DTS:Password>
+            Sensitive="1"></DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
