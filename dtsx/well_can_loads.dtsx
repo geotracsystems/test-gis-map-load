@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/10/2019 12:11:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="TOGS-LT-0027"
+  DTS:CreatorName="GEOTRAC\rtowse"
+  DTS:DTSID="{9E149BA4-316A-4D0D-83D0-86A524DFB18A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="4105"
+  DTS:ObjectName="well_can_loads"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{18FEAFAB-EBDF-44FD-8D5C-D2AF534A4FE1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.46.35.GISData.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{513E3FC6-DF41-4A64-9AC8-54DD09E0FD04}"
+      DTS:ObjectName="192.168.46.35.GISData.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.46.35;User ID=sa;Initial Catalog=GISData;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZn+jZs5QkmXqnof5wSSCQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABhmU2W4p+UiIRUcAzq5EbNAAAAAASAAACgAAAAEAAAADmVwFQVul5906XLWq5MuWsgAAAARGBWztAhJNfSKbHavuc4ty/wbEA4OnIHA1DDUhj19v4UAAAAsRI3zP4P+3XSOJ52/bKd0T69/g4</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.60.75.GISData.gis]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D91F5F77-995C-4775-8051-6ED190E188BF}"
+      DTS:ObjectName="192.168.60.75.GISData.gis">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.60.75;User ID=gis;Initial Catalog=GISData;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZn+jZs5QkmXqnof5wSSCQAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADmLlopJhriLppnle0CESobAAAAAASAAACgAAAAEAAAABlaSdCrrlhb5PSVLwFN2F4YAAAAZypPKJazfHQr/Xne5YcyzW6fYUgEXQt3FAAAADvbq6gM8G8Sq7ckkT2I+HeG7ztd</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Drop indxes on well_can_stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Drop indxes on well_can_stage"
+      DTS:DTSID="{FD2DFA2F-D833-4B91-A2B4-A64C5A336DB9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Drop indxes on well_can_stage"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D91F5F77-995C-4775-8051-6ED190E188BF}"
+          SQLTask:SqlStatementSource="exec [dbo].[proc_well_can_stage_drop_idx]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{53485AFF-61C9-45BD-A2F3-4BF1BFDDFFD4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Well_can@TESTDBGEOCDE01"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[well_can]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.46.35.GISData.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.46.35.GISData.sa]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[wellid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[wellid]"
+                      length="36"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[wellid]"
+                      name="wellid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[uwi]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[uwi]"
+                      length="16"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[uwi]"
+                      name="uwi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[origsourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[origsourceid]"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[origsourceid]"
+                      name="origsourceid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[type]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[type]"
+                      name="type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[status]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[status]"
+                      name="status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sour]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[sour]"
+                      length="1"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sour]"
+                      name="sour"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licensee]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[licensee]"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licensee]"
+                      name="licensee"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[operator]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[operator]"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[operator]"
+                      name="operator"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[spuddate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[spuddate]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[spuddate]"
+                      name="spuddate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licdate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[licdate]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licdate]"
+                      name="licdate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[haccuracy]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[haccuracy]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[haccuracy]"
+                      name="haccuracy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[dls_address]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[dls_address]"
+                      length="17"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[dls_address]"
+                      name="dls_address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[nts_address]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[nts_address]"
+                      length="17"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[nts_address]"
+                      name="nts_address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[provstate]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[provstate]"
+                      length="2"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[provstate]"
+                      name="provstate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[sourceid]"
+                      length="36"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sourceid]"
+                      name="sourceid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[lastmodified]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[lastmodified]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[lastmodified]"
+                      name="lastmodified"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[modifiedby]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[modifiedby]"
+                      length="50"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[modifiedby]"
+                      name="modifiedby"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[remarks]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[remarks]"
+                      length="150"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[remarks]"
+                      name="remarks"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[geom]"
+                      dataType="image"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[geom]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[geom]"
+                      name="geom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[countymd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[countymd]"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[countymd]"
+                      name="countymd"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[gid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[gid]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[gid]"
+                      name="gid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[surface_loc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[surface_loc]"
+                      length="20"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[surface_loc]"
+                      name="surface_loc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[field]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[field]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[field]"
+                      name="field"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[deltaflag]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[deltaflag]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[deltaflag]"
+                      name="deltaflag"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[wellid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="wellid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[uwi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="uwi" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[origsourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="origsourceid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[type]"
+                      dataType="i4"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[sour]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="sour" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[licensee]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="licensee" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[operator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="operator" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[spuddate]"
+                      dataType="dbDate"
+                      name="spuddate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[licdate]"
+                      dataType="dbDate"
+                      name="licdate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[haccuracy]"
+                      dataType="i4"
+                      name="haccuracy" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[dls_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="dls_address" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[nts_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="nts_address" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[provstate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="provstate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[sourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="sourceid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[lastmodified]"
+                      dataType="dbDate"
+                      name="lastmodified" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[modifiedby]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="modifiedby" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[remarks]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="remarks" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[geom]"
+                      dataType="image"
+                      name="geom" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[countymd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="countymd" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[gid]"
+                      dataType="i4"
+                      name="gid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[surface_loc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="surface_loc" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[field]"
+                      codePage="1252"
+                      dataType="text"
+                      name="field" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].ExternalColumns[deltaflag]"
+                      codePage="1252"
+                      dataType="text"
+                      name="deltaflag" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[wellid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[wellid]"
+                      name="wellid" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[uwi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[uwi]"
+                      name="uwi" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[origsourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[origsourceid]"
+                      name="origsourceid" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[type]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[type]"
+                      name="type" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[status]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[status]"
+                      name="status" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[sour]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[sour]"
+                      name="sour" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[licensee]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[licensee]"
+                      name="licensee" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[operator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[operator]"
+                      name="operator" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[spuddate]"
+                      dataType="dbDate"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[spuddate]"
+                      name="spuddate" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[licdate]"
+                      dataType="dbDate"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[licdate]"
+                      name="licdate" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[haccuracy]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[haccuracy]"
+                      name="haccuracy" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[dls_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[dls_address]"
+                      name="dls_address" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[nts_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[nts_address]"
+                      name="nts_address" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[provstate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[provstate]"
+                      name="provstate" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[sourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[sourceid]"
+                      name="sourceid" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[lastmodified]"
+                      dataType="dbDate"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[lastmodified]"
+                      name="lastmodified" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[modifiedby]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[modifiedby]"
+                      name="modifiedby" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[remarks]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[remarks]"
+                      name="remarks" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[geom]"
+                      dataType="image"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[geom]"
+                      name="geom" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[countymd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[countymd]"
+                      name="countymd" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[gid]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[gid]"
+                      name="gid" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[surface_loc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[surface_loc]"
+                      name="surface_loc" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[field]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[field]"
+                      name="field" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[deltaflag]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[deltaflag]"
+                      name="deltaflag" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="well_can_stage@db-geocder"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[well_can_stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.60.75.GISData.gis]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.60.75.GISData.gis]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[wellid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="wellid"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[wellid]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[wellid]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[uwi]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="uwi"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[uwi]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[uwi]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[origsourceid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="origsourceid"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[origsourceid]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[origsourceid]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[type]"
+                      cachedDataType="i4"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[status]"
+                      cachedDataType="i4"
+                      cachedName="status"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[status]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[sour]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="sour"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[sour]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sour]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[licensee]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="licensee"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[licensee]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licensee]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[operator]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="operator"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[operator]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[operator]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[spuddate]"
+                      cachedDataType="dbDate"
+                      cachedName="spuddate"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[spuddate]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[spuddate]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[licdate]"
+                      cachedDataType="dbDate"
+                      cachedName="licdate"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[licdate]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[licdate]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[haccuracy]"
+                      cachedDataType="i4"
+                      cachedName="haccuracy"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[haccuracy]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[haccuracy]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[dls_address]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="17"
+                      cachedName="dls_address"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[dls_address]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[dls_address]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[nts_address]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="17"
+                      cachedName="nts_address"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[nts_address]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[nts_address]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[provstate]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="provstate"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[provstate]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[provstate]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[sourceid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="36"
+                      cachedName="sourceid"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[sourceid]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[sourceid]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[lastmodified]"
+                      cachedDataType="dbDate"
+                      cachedName="lastmodified"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[lastmodified]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[lastmodified]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[modifiedby]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="modifiedby"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[modifiedby]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[modifiedby]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[remarks]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="remarks"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[remarks]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[remarks]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[geom]"
+                      cachedDataType="image"
+                      cachedName="geom"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[geom]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[geom]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[countymd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="countymd"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[countymd]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[countymd]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[surface_loc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="surface_loc"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[surface_loc]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[surface_loc]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[field]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="field"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[field]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[field]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[deltaflag]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="deltaflag"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[deltaflag]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[deltaflag]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[wellid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="wellid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[uwi]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="uwi" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[origsourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="origsourceid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[type]"
+                      dataType="i4"
+                      name="type" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      dataType="i4"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[sour]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="sour" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[licensee]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="licensee" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[operator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="operator" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[spuddate]"
+                      dataType="dbDate"
+                      name="spuddate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[licdate]"
+                      dataType="dbDate"
+                      name="licdate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[haccuracy]"
+                      dataType="i4"
+                      name="haccuracy" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[dls_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="dls_address" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[nts_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="nts_address" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[provstate]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="provstate" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[sourceid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="sourceid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[lastmodified]"
+                      dataType="dbDate"
+                      name="lastmodified" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[modifiedby]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="modifiedby" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[remarks]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="remarks" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[geom]"
+                      dataType="image"
+                      name="geom" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[countymd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="countymd" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[gid]"
+                      dataType="i4"
+                      name="gid" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[surface_loc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="surface_loc" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[field]"
+                      codePage="1252"
+                      dataType="text"
+                      name="field" />
+                    <externalMetadataColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[deltaflag]"
+                      codePage="1252"
+                      dataType="text"
+                      name="deltaflag" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder.Paths[OLE DB Source Output]"
+              endId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Recreate indexes on well_can_stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Recreate indexes on well_can_stage"
+      DTS:DTSID="{16E22C1C-60E9-45B2-87DF-77D37A6D0944}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Recreate indexes on well_can_stage"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D91F5F77-995C-4775-8051-6ED190E188BF}"
+          SQLTask:SqlStatementSource="exec [dbo].[proc_well_can_stage_make_idx]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate well_can_stage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Truncate well_can_stage"
+      DTS:DTSID="{B55928A1-6871-43FE-8218-426EB6512638}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate well_can_stage"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D91F5F77-995C-4775-8051-6ED190E188BF}"
+          SQLTask:SqlStatementSource="truncate table well_can_stage" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{54A00E58-0A2B-4E01-8D1A-30A5580C7C87}"
+      DTS:From="Package\Truncate well_can_stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Drop indxes on well_can_stage" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{5FBDDDE5-9BBC-42B2-A942-0D6EB5216219}"
+      DTS:From="Package\Drop indxes on well_can_stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FDFCC18-2D97-403E-8030-EF2E954545D9}"
+      DTS:From="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Recreate indexes on well_can_stage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Drop indxes on well_can_stage"
+          TopLeft="204.000003474099,71.5764715920683" />
+        <NodeLayout
+          Size="400,41.6"
+          Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
+          TopLeft="183.214288740742,140.229413609356" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Recreate indexes on well_can_stage"
+          TopLeft="203.42857489294,255.905885201424" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Truncate well_can_stage"
+          TopLeft="207.428574961059,0" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="289.314289217579,41.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.9764715920683"
+              Start="0,0"
+              End="0,22.4764715920683">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4764715920683" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="290.000003474099,113.176471592068">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.214285266643,27.0529420172877"
+              Start="0,0"
+              End="93.214285266643,19.5529420172877">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.52647100864384" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.52647100864384"
+                    Point2="0,13.5264710086438"
+                    Point3="4,13.5264710086438" />
+                  <mssgle:LineSegment
+                    End="89.214285266643,13.5264710086438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.214285266643,13.5264710086438"
+                    Point2="93.214285266643,13.5264710086438"
+                    Point3="93.214285266643,17.5264710086438" />
+                  <mssgle:LineSegment
+                    End="93.214285266643,19.5529420172877" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="383.214288740742,181.829413609356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93.785713847802,74.076471592068"
+              Start="0,0"
+              End="-93.785713847802,66.576471592068">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.038235796034" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.038235796034"
+                    Point2="0,37.038235796034"
+                    Point3="-4,37.038235796034" />
+                  <mssgle:LineSegment
+                    End="-89.785713847802,37.038235796034" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89.785713847802,37.038235796034"
+                    Point2="-93.785713847802,37.038235796034"
+                    Point3="-93.785713847802,41.038235796034" />
+                  <mssgle:LineSegment
+                    End="-93.785713847802,66.576471592068" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01"
+          TopLeft="240.571432668336,33.0352945809546" />
+        <NodeLayout
+          Size="213.6,41.6"
+          Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder"
+          TopLeft="240.571432668335,167.858825760152" />
+        <EdgeLayout
+          Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder.Paths[OLE DB Source Output]"
+          TopLeft="348.971432668336,74.6352945809546">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93.223531179197"
+              Start="0,0"
+              End="0,85.723531179197">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.723531179197" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
