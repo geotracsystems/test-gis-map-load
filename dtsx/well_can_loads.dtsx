@@ -1,21 +1,21 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/10/2019 12:11:15 PM"
-  DTS:CreationName="Microsoft.Package"
+  DTS:CreationName="SSIS.Package.3"
   DTS:CreatorComputerName="TOGS-LT-0027"
   DTS:CreatorName="GEOTRAC\rtowse"
   DTS:DTSID="{9E149BA4-316A-4D0D-83D0-86A524DFB18A}"
-  DTS:ExecutableType="Microsoft.Package"
+  DTS:ExecutableType="SSIS.Package.3"
   DTS:LastModifiedProductVersion="15.0.1300.371"
   DTS:LocaleID="4105"
   DTS:ObjectName="well_can_loads"
   DTS:PackageType="5"
-  DTS:ProtectionLevel="0"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{7DCDABD5-DD78-4FBD-91C0-E136C2C73687}">
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{68444EC7-4F78-4F7D-9323-6FE48EE720E1}">
   <DTS:Property
-    DTS:Name="PackageFormatVersion">8</DTS:Property>
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[192.168.46.35.GISData.sa]"
@@ -24,10 +24,17 @@
       DTS:ObjectName="192.168.46.35.GISData.sa">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=192.168.46.35;User ID=sa;Initial Catalog=GISData;Provider=SQLNCLI11.1;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"></DTS:Password>
+          DTS:ConnectionString="Data Source=192.168.46.35;User ID=sa;Initial Catalog=GISData;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="Zea/vLr1Ag=="
+            IV="BhrkXDeqWfo=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+            <CipherData>
+              <CipherValue>BhrkXDeqWfoGo6n5NIPs7VWMoaNITi7+mijpOA+8/XVgIbvURihVmSmAseZ1nNA/CQnnv6tu0w8wi81Kr2/VO+RaFudiq+fbpB+qEcOU5rA/F1tl9//lxE4Qz1J3v1XioEtcbMrjE7ckx08t6of7NIlTm73XdarS3nRgeCH27j+d9cw29lTH9g==</CipherValue>
+            </CipherData>
+          </EncryptedData>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -39,9 +46,16 @@
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectionString="Data Source=192.168.60.75;User ID=gis;Initial Catalog=GISData;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"></DTS:Password>
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="SHa6YQTqjg=="
+            IV="vYmuSQTw9Lk=" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+            <CipherData>
+              <CipherValue>vYmuSQTw9LmUOPJxjlUrDXVle65XyFqRmyEl5Wziu37i+qGT0QlIDsIz+xnABwl9fxZ8GBnaWbC0VrFqijQHmZTFDaq56gcs2I6DEmemY3R3ws+ENdHe0fgHi6bQjAl6wMzLemxaNu1L5EHM7sMP191XGvxojteT2jF15a+l2d8=</CipherValue>
+            </CipherData>
+          </EncryptedData>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -50,10 +64,10 @@
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Drop indxes on well_can_stage"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Drop indxes on well_can_stage"
       DTS:DTSID="{FD2DFA2F-D833-4B91-A2B4-A64C5A336DB9}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Drop indxes on well_can_stage"
       DTS:ThreadHint="0">
@@ -66,10 +80,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
-      DTS:CreationName="Microsoft.Pipeline"
+      DTS:CreationName="SSIS.Pipeline.3"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{53485AFF-61C9-45BD-A2F3-4BF1BFDDFFD4}"
-      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:ExecutableType="SSIS.Pipeline.3"
       DTS:LocaleID="-1"
       DTS:ObjectName="Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
@@ -80,7 +94,7 @@
           <components>
             <component
               refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01"
-              componentClassID="Microsoft.OLEDBSource"
+              componentClassID="DTSAdapter.OLEDBSource.3"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
               name="Well_can@TESTDBGEOCDE01"
@@ -103,7 +117,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -714,7 +728,7 @@
             </component>
             <component
               refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder"
-              componentClassID="Microsoft.OLEDBDestination"
+              componentClassID="DTSAdapter.OLEDBDestination.3"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
               name="well_can_stage@db-geocder"
@@ -737,7 +751,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -960,6 +974,12 @@
                       cachedName="deltaflag"
                       externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[deltaflag]"
                       lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[deltaflag]" />
+                    <inputColumn
+                      refId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].Columns[gid]"
+                      cachedDataType="i4"
+                      cachedName="gid"
+                      externalMetadataColumnId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\well_can_stage@db-geocder.Inputs[OLE DB Destination Input].ExternalColumns[gid]"
+                      lineageId="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01.Outputs[OLE DB Source Output].Columns[gid]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1136,10 +1156,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Recreate indexes on well_can_stage"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Recreate indexes on well_can_stage"
       DTS:DTSID="{16E22C1C-60E9-45B2-87DF-77D37A6D0944}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Recreate indexes on well_can_stage"
       DTS:ThreadHint="0">
@@ -1152,10 +1172,10 @@
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Truncate well_can_stage"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:Description="Truncate well_can_stage"
       DTS:DTSID="{B55928A1-6871-43FE-8218-426EB6512638}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate well_can_stage"
       DTS:ThreadHint="0">
@@ -1198,7 +1218,7 @@
 <!--If you manually edit this section and make a mistake, you can delete it. -->
 <!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
-  Version="8">
+  Version="sql11">
   <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
@@ -1208,11 +1228,11 @@
         <NodeLayout
           Size="172,41.6"
           Id="Package\Drop indxes on well_can_stage"
-          TopLeft="204.000003474099,71.5764715920683" />
+          TopLeft="204.000003474099,70.3529421631441" />
         <NodeLayout
           Size="400,41.6"
           Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder"
-          TopLeft="183.214288740742,140.229413609356" />
+          TopLeft="184.357145903062,139.617648894894" />
         <NodeLayout
           Size="172,41.6"
           Id="Package\Recreate indexes on well_can_stage"
@@ -1227,14 +1247,14 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29.9764715920683"
+              EndConnector="0,28.7529421631441"
               Start="0,0"
-              End="0,22.4764715920683">
+              End="0,21.2529421631441">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.4764715920683" />
+                    End="0,21.2529421631441" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1245,30 +1265,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="290.000003474099,113.176471592068">
+          TopLeft="290.000003474099,111.952942163144">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="93.214285266643,27.0529420172877"
+              EndConnector="94.3571424289628,27.6647067317498"
               Start="0,0"
-              End="93.214285266643,19.5529420172877">
+              End="94.3571424289628,20.1647067317498">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,9.52647100864384" />
+                    End="0,9.83235336587488" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,9.52647100864384"
-                    Point2="0,13.5264710086438"
-                    Point3="4,13.5264710086438" />
+                    Point1="0,9.83235336587488"
+                    Point2="0,13.8323533658749"
+                    Point3="4,13.8323533658749" />
                   <mssgle:LineSegment
-                    End="89.214285266643,13.5264710086438" />
+                    End="90.3571424289628,13.8323533658749" />
                   <mssgle:CubicBezierSegment
-                    Point1="89.214285266643,13.5264710086438"
-                    Point2="93.214285266643,13.5264710086438"
-                    Point3="93.214285266643,17.5264710086438" />
+                    Point1="90.3571424289628,13.8323533658749"
+                    Point2="94.3571424289628,13.8323533658749"
+                    Point3="94.3571424289628,17.8323533658749" />
                   <mssgle:LineSegment
-                    End="93.214285266643,19.5529420172877" />
+                    End="94.3571424289628,20.1647067317498" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1279,30 +1299,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="383.214288740742,181.829413609356">
+          TopLeft="384.357145903062,181.217648894894">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-93.785713847802,74.076471592068"
+              EndConnector="-94.9285710101219,74.6882363065301"
               Start="0,0"
-              End="-93.785713847802,66.576471592068">
+              End="-94.9285710101219,67.1882363065301">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.038235796034" />
+                    End="0,33.3441181532651" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33.038235796034"
-                    Point2="0,37.038235796034"
-                    Point3="-4,37.038235796034" />
+                    Point1="0,33.3441181532651"
+                    Point2="0,37.3441181532651"
+                    Point3="-4,37.3441181532651" />
                   <mssgle:LineSegment
-                    End="-89.785713847802,37.038235796034" />
+                    End="-90.9285710101219,37.3441181532651" />
                   <mssgle:CubicBezierSegment
-                    Point1="-89.785713847802,37.038235796034"
-                    Point2="-93.785713847802,37.038235796034"
-                    Point3="-93.785713847802,41.038235796034" />
+                    Point1="-90.9285710101219,37.3441181532651"
+                    Point2="-94.9285710101219,37.3441181532651"
+                    Point3="-94.9285710101219,41.3441181532651" />
                   <mssgle:LineSegment
-                    End="-93.785713847802,66.576471592068" />
+                    End="-94.9285710101219,67.1882363065301" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1318,7 +1338,7 @@
     design-time-name="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="220,41.6"
           Id="Package\Load from well_can@tesdbvgecoder to well_can_stage@db-geocder\Well_can@TESTDBGEOCDE01"
@@ -1346,7 +1366,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
